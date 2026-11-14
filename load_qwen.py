@@ -5,9 +5,8 @@ import torch
 from huggingface_hub import snapshot_download
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-# Configuration
-MODEL_ID = "Qwen/Qwen3-4B"
-MODEL_DIR = Path("models/Qwen3-4B")
+MODEL_ID = "Qwen/Qwen3-4B-Instruct-2507"
+MODEL_DIR = Path(__file__).resolve().parent / "models" / "Qwen3-4B-Instruct-2507"
 
 model_path = snapshot_download(
     repo_id=MODEL_ID,
@@ -22,10 +21,10 @@ model = AutoModelForCausalLM.from_pretrained(
     device_map=0, # "auto" maps onto GPU, Memory, and Disk
 ).eval()
 
-print(f"Device: {model.device}")
+print(f"Model {MODEL_ID} on Device: {model.device}")
 
 # Smoke Test
-messages = [
+messages : list[dict[str,str]] = [
     {"role": "user", "content": "What is moral responsibility?"}
 ]
 
@@ -33,7 +32,6 @@ inputs = tokenizer.apply_chat_template(
     messages,
     tokenize=True,
     add_generation_prompt=True,
-    enable_thinking=False,
     return_dict=True,
     return_tensors="pt",
 ).to(model.device)
