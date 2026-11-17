@@ -41,8 +41,6 @@ records = list(subset)
 # Data and device error handling
 if not records:
     raise ValueError("Select a nonempty training dataset first.")
-if OUTPUT_DIR.exists():
-    raise ValueError("Choose a new OUTPUT_DIR so an earlier run is not overwritten.")
 if not torch.cuda.is_available() or not torch.cuda.is_bf16_supported():
     raise ValueError("This configuration requires a CUDA GPU with bfloat16 support.")
 
