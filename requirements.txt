@@ -1,0 +1,16 @@
+# PyTorch uses the installed CUDA 12.8 build.
+--extra-index-url https://download.pytorch.org/whl/cu128
+
+torch==2.11.0+cu128
+transformers==5.22.2
+accelerate==1.15.0
+bitsandbytes==0.50.2
+peft==0.21.2
+trl==1.18.0
+datasets==5.2.0
+huggingface_hub==2.4.0
+matplotlib==3.11.2
+seaborn==0.13.2
+pydantic==2.14.3
+ipython==9.18.1
+ipykernel==7.4.0
